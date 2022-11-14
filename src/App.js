@@ -1,8 +1,9 @@
-import { useState } from "react";
-import Header from "./components/Header";
+import { useState } from 'react'
+import Header from './components/Header'
+import TaskList from './components/Task_List'
 
 const App = () => {
-  const [ tasks, setTasks ] = useState([
+  const [tasks, setTasks] = useState([
     {
       id: 1,
       text: 'Morning jog',
@@ -13,8 +14,9 @@ const App = () => {
   return (
     <div className="main">
       <Header />
+      <TaskList task={tasks} />
     </div>
   )
 }
 
-export default App;
+export default App
