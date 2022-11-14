@@ -7,14 +7,32 @@ const App = () => {
     {
       id: 1,
       text: 'Morning jog',
-      reminde: true
+      todo: true
+    },
+    {
+      id: 2,
+      text: 'Afternoon workout',
+      todo: true
+    },
+    {
+      id: 3,
+      text: 'Dinner with family',
+      todo: true
     }
   ])
+
+  const taskDelete = (id) => {
+    setTasks(tasks.filter((tasks) => tasks.id !== id))
+  }
+
+  const taskTodo = (id) => {
+    setTasks(tasks.map((tasks) => tasks.id === id ? {...tasks, todo: !tasks.todo} : tasks))
+  }
 
   return (
     <div className="main">
       <Header />
-      <TaskList task={tasks} />
+      {tasks.length > 0 ? <TaskList task={tasks} taskDel={taskDelete} taskTodo={taskTodo}/> : <h3>You have no tasks available, enjoy yourself!</h3>}
     </div>
   )
 }
