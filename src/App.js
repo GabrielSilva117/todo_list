@@ -4,8 +4,8 @@ import TaskList from './components/TaskList'
 import { v4 as uuidv4 } from 'uuid'
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {
+  const [tasks, setTasks] = useState([])
+  const [filteredTasks, setFilteredTasks] = useState([])
   const [selected, setSelected] = useState('All')
       text: 'Morning jog',
       todo: true
@@ -48,6 +48,26 @@ const App = () => {
       )
     )
   }
+
+  const taskListType = () => {
+    console.log(filteredTasks)
+    switch (selected) {
+      case 'Done':
+        setFilteredTasks(tasks.filter((tasks) => tasks.todo !== true))
+        break
+      case 'Todo':
+        setFilteredTasks(tasks.filter((tasks) => tasks.todo !== false))
+        break
+      default:
+        setFilteredTasks(tasks)
+        break
+    }
+  }
+
+  useEffect(() => {
+    taskListType()
+  }, [tasks, selected])
+
   return (
     <div className="main">
       <Header />
