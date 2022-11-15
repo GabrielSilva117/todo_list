@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 const App = () => {
   const [tasks, setTasks] = useState([
     {
-      id: 1,
+  const [selected, setSelected] = useState('All')
       text: 'Morning jog',
       todo: true
     },
