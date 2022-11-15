@@ -1,19 +1,24 @@
-import { BsFillTrashFill, BsFillCheckSquareFill } from 'react-icons/bs'
+import { BsFillTrashFill, BsFillCheckSquareFill, BsFillPencilFill } from 'react-icons/bs'
 
-const Task = ({ task, taskDel, taskTodo }) => {
+const Task = ({ filteredTasks, taskDel, taskTodo, editTask }) => {
   return (
     <>
-      <h3 className={`task ${!task.todo ? 'done' : ''}`}>
-        {task.text}
+      <h3 className={`task ${!filteredTasks.todo ? 'done' : ''}`}>
+        {filteredTasks.text}
+      <section>  
         <BsFillCheckSquareFill
-          className="btn_act"
-          style={{ cursor: 'pointer' }}
-          onClick={() => taskTodo(task.id)}
+          className="btn-act"
+          onClick={() => taskTodo(filteredTasks.id)}
+        />
+        <BsFillPencilFill
+          className='btn-act'
+          onClick={() => editTask(filteredTasks.id, filteredTasks.text)}
         />
         <BsFillTrashFill
-          style={{ cursor: 'pointer' }}
-          onClick={() => taskDel(task.id)}
+          className='btn-act'
+          onClick={() => taskDel(filteredTasks.id)}
         />
+      </section>
       </h3>
     </>
   )

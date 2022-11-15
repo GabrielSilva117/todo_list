@@ -27,13 +27,27 @@ const App = () => {
   }
 
   const taskTodo = (id) => {
-    setTasks(tasks.map((tasks) => tasks.id === id ? {...tasks, todo: !tasks.todo} : tasks))
+    setTasks(
+      tasks.map((tasks) =>
+        tasks.id === id ? { ...tasks, todo: !tasks.todo } : tasks
+      )
+    )
+  }
+
   const createTask = (text) => {
     let taskId = uuidv4()
     const newTask = { id: taskId, text: text, todo: true }
     setTasks([...tasks, newTask])
   }
 
+  const editTask = (id, text) => {
+    let newText = prompt(`Edit: ${text}`)
+    setTasks(
+      tasks.map((tasks) =>
+        tasks.id === id ? { ...tasks, text: newText } : tasks
+      )
+    )
+  }
   return (
     <div className="main">
       <Header />
