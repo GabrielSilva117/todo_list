@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import TaskList from './components/Task_List'
+import TaskList from './components/TaskList'
 import { v4 as uuidv4 } from 'uuid'
 
 const App = () => {
@@ -37,7 +37,16 @@ const App = () => {
   return (
     <div className="main">
       <Header />
-      {tasks.length > 0 ? <TaskList task={tasks} taskDel={taskDelete} taskTodo={taskTodo}/> : <h3>You have no tasks available, enjoy yourself!</h3>}
+      {tasks.length > 0 ? (
+        <TaskList
+          filteredTasks={filteredTasks}
+          taskDel={taskDelete}
+          taskTodo={taskTodo}
+          editTask={editTask}
+        />
+      ) : (
+        <h3>You have no tasks available, enjoy yourself!</h3>
+      )}
     </div>
   )
 }
