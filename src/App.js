@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import TaskList from './components/Task_List'
+import { v4 as uuidv4 } from 'uuid'
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -27,6 +28,10 @@ const App = () => {
 
   const taskTodo = (id) => {
     setTasks(tasks.map((tasks) => tasks.id === id ? {...tasks, todo: !tasks.todo} : tasks))
+  const createTask = (text) => {
+    let taskId = uuidv4()
+    const newTask = { id: taskId, text: text, todo: true }
+    setTasks([...tasks, newTask])
   }
 
   return (
