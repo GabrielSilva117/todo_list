@@ -56,7 +56,7 @@ const App = () => {
 
   return (
     <div className="main">
-      <Header />
+      <Header createTask={createTask} setSelected={setSelected} />
       {tasks.length > 0 ? (
         <TaskList
           filteredTasks={filteredTasks}
