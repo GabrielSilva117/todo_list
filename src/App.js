@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import TaskList from './components/TaskList'
 import { v4 as uuidv4 } from 'uuid'
@@ -7,20 +7,6 @@ const App = () => {
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [selected, setSelected] = useState('All')
-      text: 'Morning jog',
-      todo: true
-    },
-    {
-      id: 2,
-      text: 'Afternoon workout',
-      todo: true
-    },
-    {
-      id: 3,
-      text: 'Dinner with family',
-      todo: true
-    }
-  ])
 
   const taskDelete = (id) => {
     setTasks(tasks.filter((tasks) => tasks.id !== id))
