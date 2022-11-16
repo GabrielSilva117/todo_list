@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import TaskList from './components/TaskList'
+import Addtask from './components/Addtask'
 import { v4 as uuidv4 } from 'uuid'
 
 const App = () => {
@@ -62,7 +63,7 @@ const App = () => {
           filteredTasks={filteredTasks}
           taskDel={taskDelete}
           taskTodo={taskTodo}
-          editTask={editTask}
+      {showForm === true ? <Addtask createTask={createTask} /> : ''}
         {tasks.length > 0 ? (
       <div className='task-list'>
           
