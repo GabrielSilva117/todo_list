@@ -77,6 +77,8 @@ body {
 
 .task-list {
   padding: 15px;
+  overflow: auto;
+  text-overflow: ellipsis;
 }
 
 .form-body {
@@ -96,5 +98,6 @@ body {
   background-color: black;
   color: white;
   font-family: inherit;
+  cursor: pointer;
 }
 
