@@ -43,7 +43,6 @@ const App = () => {
     return
   }
 
-
   const taskContent = (id, text) => {
     if (showForm === false) {
       setShowForm(true)
