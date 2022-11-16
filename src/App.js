@@ -9,6 +9,7 @@ const App = () => {
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [selected, setSelected] = useState('All')
+  const [taskEdit, setTaskEdit] = useState([])
 
   const taskDelete = (id) => {
     setTasks(tasks.filter((tasks) => tasks.id !== id))
@@ -27,20 +28,30 @@ const App = () => {
   }
 
   const createTask = (text) => {
+    if (taskEdit) {
+      const validTask = tasks.find((tasks) => tasks.id === taskEdit.id)
+      if (validTask) {
+        setTasks(
+          tasks.map((tasks) =>
+            tasks.id === taskEdit.id ? { ...tasks, text: text } : tasks
+          )
+        )
+        setTaskEdit([])
+        return
+      }
+    }
     const taskId = uuidv4()
     const newTask = { id: taskId, text: text, todo: true }
     setTasks([...tasks, newTask])
   }
 
-  const editTask = (id, text) => {
-    let newText = prompt(`Edit: ${text}`)
-    setTasks(
-      tasks.map((tasks) =>
-        tasks.id === id ? { ...tasks, text: newText } : tasks
-      )
-    )
+  const taskContent = (id, text) => {
+    if (showForm === false) {
+      setShowForm(true)
+    }
+    setTaskEdit({ id: id, text: text })
   }
-
+  
   const taskListType = () => {
     switch (selected) {
       case 'Done':
@@ -67,16 +78,19 @@ const App = () => {
         showForm={addForm}
         onAdd={showForm}
       />
-      {showForm === true ? <Addtask createTask={createTask} /> : ''}
-      <div className='task-list'>
+      {showForm === true ? (
+        <Addtask createTask={createTask} editTask={taskEdit.text} setTask={setTasks} />
+      ) : (
+        ''
+      )}
+      <div className="task-list">
         {tasks.length > 0 ? (
           <TaskList
             filteredTasks={filteredTasks}
             taskDel={taskDelete}
             taskTodo={taskTodo}
-            editTask={editTask}
+            editTask={taskContent}
           />
-          
         ) : (
           <h3>You have no tasks available, enjoy yourself!</h3>
         )}
