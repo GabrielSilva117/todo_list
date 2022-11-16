@@ -5,6 +5,7 @@ import Addtask from './components/Addtask'
 import { v4 as uuidv4 } from 'uuid'
 
 const App = () => {
+  const [showForm, setShowForm] = useState(false)
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [selected, setSelected] = useState('All')
@@ -21,8 +22,12 @@ const App = () => {
     )
   }
 
+  const addForm = () => {
+    setShowForm(!showForm)
+  }
+
   const createTask = (text) => {
-    let taskId = uuidv4()
+    const taskId = uuidv4()
     const newTask = { id: taskId, text: text, todo: true }
     setTasks([...tasks, newTask])
   }
@@ -37,7 +42,6 @@ const App = () => {
   }
 
   const taskListType = () => {
-    console.log(filteredTasks)
     switch (selected) {
       case 'Done':
         setFilteredTasks(tasks.filter((tasks) => tasks.todo !== true))
@@ -57,23 +61,22 @@ const App = () => {
 
   return (
     <div className="main">
-      <Header createTask={createTask} setSelected={setSelected} />
-      {tasks.length > 0 ? (
-        <TaskList
-          filteredTasks={filteredTasks}
-          taskDel={taskDelete}
-          taskTodo={taskTodo}
+      <Header
+        createTask={createTask}
+        setSelected={setSelected}
+        showForm={addForm}
+        onAdd={showForm}
+      />
       {showForm === true ? <Addtask createTask={createTask} /> : ''}
-        {tasks.length > 0 ? (
       <div className='task-list'>
-          
-            editTask={editTask}
-            taskTodo={taskTodo}
-            taskDel={taskDelete}
-            filteredTasks={filteredTasks}
+        {tasks.length > 0 ? (
           <TaskList
-        {tasks.length > 0 ? (
-      <div className='task-list'>
+            filteredTasks={filteredTasks}
+            taskDel={taskDelete}
+            taskTodo={taskTodo}
+            editTask={editTask}
+          />
+          
         ) : (
           <h3>You have no tasks available, enjoy yourself!</h3>
         )}
