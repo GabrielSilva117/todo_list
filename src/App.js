@@ -63,10 +63,20 @@ const App = () => {
           taskDel={taskDelete}
           taskTodo={taskTodo}
           editTask={editTask}
-        />
-      ) : (
-        <h3>You have no tasks available, enjoy yourself!</h3>
-      )}
+        {tasks.length > 0 ? (
+      <div className='task-list'>
+          
+            editTask={editTask}
+            taskTodo={taskTodo}
+            taskDel={taskDelete}
+            filteredTasks={filteredTasks}
+          <TaskList
+        {tasks.length > 0 ? (
+      <div className='task-list'>
+        ) : (
+          <h3>You have no tasks available, enjoy yourself!</h3>
+        )}
+      </div>
     </div>
   )
 }

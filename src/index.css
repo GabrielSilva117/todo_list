@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+:root {
+  --blue: rgba(20, 41, 136, 0.603);
+} 
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: auto;
+}  
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.main {
+  max-width: 500px;
+  margin: 30px auto;
+  border: 3px solid var(--blue);
+  border-radius: 6px;
+}
+
+.header {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  padding: 20px;
+  border-bottom: 2px solid var(--blue);
+}
+
+.dropdown {
+  font-size: 20px;
+  font-family: 'Ubuntu';
+  margin-left: 180px;
+  background-color: transparent;
+  width: 15%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn {
+  font-size: 18px;
+  font-family: 'Ubuntu';
+  color: white;
+  border-radius: 3px;
+  border: none;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.btn-act {
+  cursor:pointer;
+  margin: auto 4px auto 4px;
+}
+
+.task {
+  background: white;
+  font-size: 25px;
+  margin: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task.done {
+  text-decoration: line-through;
+  background-color: rgb(204, 109, 109);
+}
+
+.task-add {
+  padding: 15px;
+  margin-bottom: px;
+  border-bottom: 2px solid var(--blue);
+}
+
+.task-list {
+  padding: 15px;
+}
+
+.form-body {
+  display: block;
+  font: normal bold 20px 'Ubuntu';
+}
+
+.form-body input {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+}
+
+.submit {
+  background-color: black;
+  color: white;
+  font-family: inherit;
+}
+

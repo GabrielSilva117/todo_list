@@ -21,7 +21,7 @@ const Addtask = ({createTask}) => {
       <div className="form-body">
         <label htmlFor="text">New task:</label>
         <input type="text" placeholder="Task text" value={text} onChange={(e) => setText(e.target.value)}/>
-        <input type="submit" value="Add"/>
+        <input type="submit" value="Add" className="submit"/>
       </div>
     </form>
   )
