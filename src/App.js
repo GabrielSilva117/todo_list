@@ -28,22 +28,21 @@ const App = () => {
   }
 
   const createTask = (text) => {
-    if (taskEdit) {
-      const validTask = tasks.find((tasks) => tasks.id === taskEdit.id)
-      if (validTask) {
-        setTasks(
-          tasks.map((tasks) =>
-            tasks.id === taskEdit.id ? { ...tasks, text: text } : tasks
-          )
-        )
-        setTaskEdit([])
-        return
-      }
-    }
     const taskId = uuidv4()
     const newTask = { id: taskId, text: text, todo: true }
     setTasks([...tasks, newTask])
   }
+
+  const editTask = (text) => {
+    setTasks(
+      tasks.map((tasks) =>
+        tasks.id === taskEdit.id ? { ...tasks, text: text } : tasks
+      )
+    )
+    setTaskEdit([])
+    return
+  }
+
 
   const taskContent = (id, text) => {
     if (showForm === false) {
@@ -51,7 +50,7 @@ const App = () => {
     }
     setTaskEdit({ id: id, text: text })
   }
-  
+
   const taskListType = () => {
     switch (selected) {
       case 'Done':
@@ -79,7 +78,12 @@ const App = () => {
         onAdd={showForm}
       />
       {showForm === true ? (
-        <Addtask createTask={createTask} editTask={taskEdit.text} setTask={setTasks} />
+        <Addtask
+          createTask={createTask}
+          taskContent={taskEdit.text}
+          setTask={setTasks}
+          editTask={editTask}
+        />
       ) : (
         ''
       )}

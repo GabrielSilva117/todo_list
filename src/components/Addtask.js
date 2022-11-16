@@ -1,14 +1,19 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-const Addtask = ({createTask, editTask}) => {
-
+const Addtask = ({ createTask, editTask, taskContent }) => {
   const [text, setText] = useState()
-  
+
   const onSubmit = (e) => {
     e.preventDefault()
 
     if (!text) {
       alert('You must give a text to the task')
+      return
+    }
+
+    if (taskContent) {
+      editTask(text)
+      setText('')
       return
     }
 
@@ -20,9 +25,18 @@ const Addtask = ({createTask, editTask}) => {
   return (
     <form className="task-add" onSubmit={onSubmit}>
       <div className="form-body">
-        <label htmlFor="text">{editTask ? 'Edit task:' :'New task:'}</label>
-        <input type="text" placeholder={editTask ? editTask : 'Task text'} value={text} onChangeCapture={(e) => setText(e.target.value)}/>
-        <input type="submit" value={editTask ? 'Edit' : "Add"} className="submit"/>
+        <label htmlFor="text">{taskContent ? 'Edit task:' : 'New task:'}</label>
+        <input
+          type="text"
+          placeholder={taskContent ? taskContent : 'Task text'}
+          value={text}
+          onChangeCapture={(e) => setText(e.target.value)}
+        />
+        <input
+          type="submit"
+          value={taskContent ? 'Edit' : 'Add'}
+          className="submit"
+        />
       </div>
     </form>
   )
