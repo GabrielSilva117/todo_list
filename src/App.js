@@ -71,7 +71,6 @@ const App = () => {
   return (
     <div className="main">
       <Header
-        createTask={createTask}
         setSelected={setSelected}
         showForm={addForm}
         onAdd={showForm}

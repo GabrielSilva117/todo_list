@@ -1,7 +1,7 @@
 import Button from './Button'
 import Select from './Select'
 
-const Header = ({ createTask, setSelected, showForm, onAdd }) => {
+const Header = ({ setSelected, showForm, onAdd }) => {
   return (
     <header className="header">
       <h1 className="title">Todo List</h1>
